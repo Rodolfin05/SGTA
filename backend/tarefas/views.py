@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.http import JsonResponse
+from .models import Tarefa
 
-# Create your views here.
+def listar_tarefas(request):
+    tarefas = Tarefa.objects.all().values()
+    return JsonResponse(list(tarefas), safe=False)
+
+def tarefas_abertas(request):
+    abertas = Tarefa.objects.filter(status = 'ABERTA').values()
+    return JsonResponse(list(abertas), safe=False)
