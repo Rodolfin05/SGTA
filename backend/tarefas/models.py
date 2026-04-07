@@ -1,3 +1,5 @@
+# A função do models.py é criar a estrutura do banco de dados
+
 from django.db import models
 
 class Tarefa(models.Model):
