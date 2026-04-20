@@ -1,6 +1,7 @@
 # A função do models.py é criar a estrutura do banco de dados
 
 from django.db import models
+from usuarios.models import Usuario
 
 class Tarefa(models.Model):
     STATUS_CHOICES = [
@@ -21,6 +22,7 @@ class Tarefa(models.Model):
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_entrega = models.DateField()
     prioridade = models.CharField(max_length=20, choices=PRIORIDADE_CHOICES, default='NAO_URGENTE')
+    usuario_responsavel = models.ForeignKey((Usuario(id)), null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.titulo
