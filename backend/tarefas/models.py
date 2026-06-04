@@ -22,7 +22,12 @@ class Tarefa(models.Model):
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_entrega = models.DateField()
     prioridade = models.CharField(max_length=20, choices=PRIORIDADE_CHOICES, default='NAO_URGENTE')
-    usuario_responsavel = models.ForeignKey((Usuario(id)), null=True, on_delete=models.SET_NULL)
-
+    usuario_responsavel = models.ForeignKey(
+        Usuario,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+    
     def __str__(self):
         return self.titulo
